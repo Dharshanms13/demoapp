@@ -1,0 +1,21 @@
+services:
+  
+  demoapp:
+    container_name: demoapp-ct
+    image: demoapp
+    restart: on-failure
+    ports:
+      - 8080:8080
+    depends_on:
+      - docker-postgres
+
+  docker-postgres:
+    container_name: docker-postgres
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: sample
+    ports:
+      - 6666:5432
+    
